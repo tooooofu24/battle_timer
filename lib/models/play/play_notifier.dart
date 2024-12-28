@@ -21,6 +21,7 @@ class PlayNotifier extends StateNotifier<Play> {
     // Playの状態を更新
     state = state.copyWith(
       isPlaying: true,
+      hasStarted: true,
       isPlayerTurn: false,
     );
     // タイマーを止める
@@ -40,6 +41,7 @@ class PlayNotifier extends StateNotifier<Play> {
     // Playの状態を更新
     state = state.copyWith(
       isPlaying: true,
+      hasStarted: true,
       isPlayerTurn: true,
     );
     // タイマーを止める

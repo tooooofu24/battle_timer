@@ -46,7 +46,10 @@ class SettingCard extends StatelessWidget {
                           setTime: setTime,
                         ),
                       ),
-                      child: TimeDisplay(time: setting.time),
+                      child: TimeDisplay(
+                        time: setting.time,
+                        isActive: true,
+                      ),
                     ),
                   ),
                 ),

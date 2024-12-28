@@ -36,7 +36,6 @@ class _PlayerNameFieldState extends State<PlayerNameField> {
       controller: _controller,
       onChanged: widget.onChanged,
       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            color: Colors.blueGrey,
             fontWeight: FontWeight.bold,
           ),
       textAlign: TextAlign.center,

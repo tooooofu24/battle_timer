@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Play {
   int get playerSeconds => throw _privateConstructorUsedError;
   int get opponentSeconds => throw _privateConstructorUsedError;
+  bool get hasStarted => throw _privateConstructorUsedError;
   bool get isPlaying => throw _privateConstructorUsedError;
   bool get isPlayerTurn => throw _privateConstructorUsedError;
 
@@ -35,6 +36,7 @@ abstract class $PlayCopyWith<$Res> {
   $Res call(
       {int playerSeconds,
       int opponentSeconds,
+      bool hasStarted,
       bool isPlaying,
       bool isPlayerTurn});
 }
@@ -56,6 +58,7 @@ class _$PlayCopyWithImpl<$Res, $Val extends Play>
   $Res call({
     Object? playerSeconds = null,
     Object? opponentSeconds = null,
+    Object? hasStarted = null,
     Object? isPlaying = null,
     Object? isPlayerTurn = null,
   }) {
@@ -68,6 +71,10 @@ class _$PlayCopyWithImpl<$Res, $Val extends Play>
           ? _value.opponentSeconds
           : opponentSeconds // ignore: cast_nullable_to_non_nullable
               as int,
+      hasStarted: null == hasStarted
+          ? _value.hasStarted
+          : hasStarted // ignore: cast_nullable_to_non_nullable
+              as bool,
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
@@ -90,6 +97,7 @@ abstract class _$$PlayImplCopyWith<$Res> implements $PlayCopyWith<$Res> {
   $Res call(
       {int playerSeconds,
       int opponentSeconds,
+      bool hasStarted,
       bool isPlaying,
       bool isPlayerTurn});
 }
@@ -108,6 +116,7 @@ class __$$PlayImplCopyWithImpl<$Res>
   $Res call({
     Object? playerSeconds = null,
     Object? opponentSeconds = null,
+    Object? hasStarted = null,
     Object? isPlaying = null,
     Object? isPlayerTurn = null,
   }) {
@@ -120,6 +129,10 @@ class __$$PlayImplCopyWithImpl<$Res>
           ? _value.opponentSeconds
           : opponentSeconds // ignore: cast_nullable_to_non_nullable
               as int,
+      hasStarted: null == hasStarted
+          ? _value.hasStarted
+          : hasStarted // ignore: cast_nullable_to_non_nullable
+              as bool,
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
@@ -138,6 +151,7 @@ class _$PlayImpl extends _Play {
   const _$PlayImpl(
       {required this.playerSeconds,
       required this.opponentSeconds,
+      this.hasStarted = false,
       this.isPlaying = false,
       this.isPlayerTurn = true})
       : super._();
@@ -148,6 +162,9 @@ class _$PlayImpl extends _Play {
   final int opponentSeconds;
   @override
   @JsonKey()
+  final bool hasStarted;
+  @override
+  @JsonKey()
   final bool isPlaying;
   @override
   @JsonKey()
@@ -155,7 +172,7 @@ class _$PlayImpl extends _Play {
 
   @override
   String toString() {
-    return 'Play(playerSeconds: $playerSeconds, opponentSeconds: $opponentSeconds, isPlaying: $isPlaying, isPlayerTurn: $isPlayerTurn)';
+    return 'Play(playerSeconds: $playerSeconds, opponentSeconds: $opponentSeconds, hasStarted: $hasStarted, isPlaying: $isPlaying, isPlayerTurn: $isPlayerTurn)';
   }
 
   @override
@@ -167,6 +184,8 @@ class _$PlayImpl extends _Play {
                 other.playerSeconds == playerSeconds) &&
             (identical(other.opponentSeconds, opponentSeconds) ||
                 other.opponentSeconds == opponentSeconds) &&
+            (identical(other.hasStarted, hasStarted) ||
+                other.hasStarted == hasStarted) &&
             (identical(other.isPlaying, isPlaying) ||
                 other.isPlaying == isPlaying) &&
             (identical(other.isPlayerTurn, isPlayerTurn) ||
@@ -174,8 +193,8 @@ class _$PlayImpl extends _Play {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, playerSeconds, opponentSeconds, isPlaying, isPlayerTurn);
+  int get hashCode => Object.hash(runtimeType, playerSeconds, opponentSeconds,
+      hasStarted, isPlaying, isPlayerTurn);
 
   /// Create a copy of Play
   /// with the given fields replaced by the non-null parameter values.
@@ -190,6 +209,7 @@ abstract class _Play extends Play {
   const factory _Play(
       {required final int playerSeconds,
       required final int opponentSeconds,
+      final bool hasStarted,
       final bool isPlaying,
       final bool isPlayerTurn}) = _$PlayImpl;
   const _Play._() : super._();
@@ -198,6 +218,8 @@ abstract class _Play extends Play {
   int get playerSeconds;
   @override
   int get opponentSeconds;
+  @override
+  bool get hasStarted;
   @override
   bool get isPlaying;
   @override

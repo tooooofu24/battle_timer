@@ -1,5 +1,6 @@
 import 'package:battle_timer/features/play/components/play_card.dart';
 import 'package:battle_timer/features/play/components/play_reset_button.dart';
+import 'package:battle_timer/features/play/components/play_setting_button.dart';
 import 'package:battle_timer/features/play/components/start_stop_button.dart';
 import 'package:battle_timer/models/play/play_notifier.dart';
 import 'package:battle_timer/models/setting/rotation.dart';
@@ -42,6 +43,7 @@ class PlayScreen extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         PlayResetButton(
+                          disabled: !play.hasStarted,
                           onPressed: () => notifier.reset(setting.seconds),
                         ),
                         StartStopButton(
@@ -49,12 +51,8 @@ class PlayScreen extends ConsumerWidget {
                           onStart: () => notifier.start(),
                           onStop: () => notifier.stop(),
                         ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.settings_rounded,
-                            color: Colors.blueGrey,
-                            size: 40.0,
-                          ),
+                        PlaySettingButton(
+                          hasStarted: play.hasStarted,
                           onPressed: () {
                             notifier.stop();
                             Navigator.pushNamed(context, '/setting');

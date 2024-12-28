@@ -7,6 +7,7 @@ class Play with _$Play {
   const factory Play({
     required int playerSeconds,
     required int opponentSeconds,
+    @Default(false) bool hasStarted,
     @Default(false) bool isPlaying,
     @Default(true) bool isPlayerTurn,
   }) = _Play;

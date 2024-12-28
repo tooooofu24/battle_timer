@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class PlayResetButton extends StatelessWidget {
-  final bool disabled;
+class PlaySettingButton extends StatelessWidget {
+  final bool hasStarted;
   final void Function() onPressed;
-  const PlayResetButton({
+  const PlaySettingButton({
     super.key,
-    required this.disabled,
+    required this.hasStarted,
     required this.onPressed,
   });
 
@@ -13,12 +13,15 @@ class PlayResetButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(
-        Icons.stop_rounded,
+        Icons.settings_rounded,
         color: Colors.blueGrey,
         size: 40.0,
       ),
       onPressed: () async {
-        if (disabled) return;
+        if (!hasStarted) {
+          onPressed();
+          return;
+        }
         final confirmed = await showDialog<bool>(
           context: context,
           builder: (context) => ResetConfirmDialog(),
@@ -38,11 +41,11 @@ class ResetConfirmDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        'タイマーをリセットしますか？',
+        '設定を変更しますか？',
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.titleMedium,
       ),
-      content: Text('タイマーをリセットすると、残り時間が全てリセットされます。'),
+      content: Text('設定を変更すると、現在のタイマーもリセットされます。'),
       actions: [
         Row(
           children: [
