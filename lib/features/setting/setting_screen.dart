@@ -1,5 +1,5 @@
-import 'package:battle_timer/features/setting/components/reset_button.dart';
 import 'package:battle_timer/features/setting/components/setting_card.dart';
+import 'package:battle_timer/features/setting/components/setting_reset_button.dart';
 import 'package:battle_timer/models/setting/rotation.dart';
 import 'package:battle_timer/models/setting/setting_notifier.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,7 @@ class SettingScreen extends ConsumerWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ResetButton(
+                          SettingResetButton(
                             onPressed: () {
                               notifier.reset();
                               Navigator.pop(context);

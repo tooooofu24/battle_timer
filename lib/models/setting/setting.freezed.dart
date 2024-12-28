@@ -163,12 +163,12 @@ class __$$SettingImplCopyWithImpl<$Res>
 
 class _$SettingImpl extends _Setting {
   const _$SettingImpl(
-      {this.playerName = 'プレイヤー1',
-      this.opponentName = 'プレイヤー2',
+      {this.playerName = '太郎',
+      this.opponentName = '花子',
       this.rotation = Rotation.up,
       this.hour = 0,
       this.minute = 10,
-      this.second = 0})
+      this.second = 10})
       : super._();
 
   @override

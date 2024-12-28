@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ResetButton extends StatelessWidget {
+class SettingResetButton extends StatelessWidget {
   final void Function() onPressed;
-  const ResetButton({
+  const SettingResetButton({
     super.key,
     required this.onPressed,
   });
