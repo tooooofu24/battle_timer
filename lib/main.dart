@@ -26,6 +26,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: '対戦タイマー',
       theme: ThemeData(
+        fontFamily: 'LINESeedJP',
         useMaterial3: true,
         primarySwatch: Colors.blueGrey,
         scaffoldBackgroundColor: Color(0xFFF8FAFC),

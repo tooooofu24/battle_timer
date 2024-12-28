@@ -13,8 +13,9 @@ class PlayScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final setting = ref.watch(settingProvider);
-    final play = ref.watch(playProvider);
-    final notifier = ref.read(playProvider.notifier);
+    final provider = playProvider(setting.seconds);
+    final play = ref.watch(provider);
+    final notifier = ref.read(provider.notifier);
 
     return PopScope(
       canPop: false,
@@ -31,6 +32,7 @@ class PlayScreen extends ConsumerWidget {
                     child: PlayCard(
                       playerName: setting.opponentName,
                       time: play.opponentTime,
+                      isActive: !play.isPlayerTurn && play.isPlaying,
                       onTap: () => notifier.tapOpponentTimer(),
                     ),
                   ),
@@ -40,7 +42,7 @@ class PlayScreen extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         PlayResetButton(
-                          onPressed: () => notifier.reset(setting),
+                          onPressed: () => notifier.reset(setting.seconds),
                         ),
                         StartStopButton(
                           isPlaying: play.isPlaying,
@@ -66,6 +68,7 @@ class PlayScreen extends ConsumerWidget {
                     child: PlayCard(
                       playerName: setting.playerName,
                       time: play.playerTime,
+                      isActive: play.isPlayerTurn && play.isPlaying,
                       onTap: () => notifier.tapPlayerTimer(),
                     ),
                   ),

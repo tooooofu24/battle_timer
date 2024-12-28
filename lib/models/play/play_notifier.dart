@@ -1,26 +1,17 @@
 import 'package:battle_timer/features/play/utils/timer_service.dart';
 import 'package:battle_timer/models/play/play.dart';
-import 'package:battle_timer/models/setting/setting.dart';
-import 'package:battle_timer/models/setting/setting_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PlayNotifier extends StateNotifier<Play> {
   PlayNotifier(
-    int playerRemainingSeconds,
-    int opponentRemainingSeconds,
+    int playerSeconds,
+    int opponentSeconds,
   ) : super(Play(
-          playerRemainingSeconds: playerRemainingSeconds,
-          opponentRemainingSeconds: opponentRemainingSeconds,
+          playerSeconds: playerSeconds,
+          opponentSeconds: opponentSeconds,
         ));
 
   final timerService = TimerService();
-
-  void setSetting(Setting setting) {
-    state = state.copyWith(
-      playerRemainingSeconds: setting.seconds,
-      opponentRemainingSeconds: setting.seconds,
-    );
-  }
 
   void tapPlayerTimer() {
     // プレイ中 && 相手のターンの場合は何もしない
@@ -34,11 +25,10 @@ class PlayNotifier extends StateNotifier<Play> {
     );
     // タイマーを止める
     timerService.stop();
-    // 1秒ごとにopponentRemainingSecondsを1減らす
+    // 1秒ごとにopponentSecondsを1減らす
     timerService.start(
-      state.opponentRemainingSeconds,
-      (remaining) =>
-          state = state.copyWith(opponentRemainingSeconds: remaining),
+      state.opponentSeconds,
+      (remaining) => state = state.copyWith(opponentSeconds: remaining),
     );
   }
 
@@ -54,10 +44,10 @@ class PlayNotifier extends StateNotifier<Play> {
     );
     // タイマーを止める
     timerService.stop();
-    // 1秒ごとにplayerRemainingSecondsを1減らす
+    // 1秒ごとにplayerSecondsを1減らす
     timerService.start(
-      state.playerRemainingSeconds,
-      (remaining) => state = state.copyWith(playerRemainingSeconds: remaining),
+      state.playerSeconds,
+      (remaining) => state = state.copyWith(playerSeconds: remaining),
     );
   }
 
@@ -74,16 +64,18 @@ class PlayNotifier extends StateNotifier<Play> {
     }
   }
 
-  void reset(Setting setting) {
+  void reset(int seconds) {
     timerService.stop();
     state = Play(
-      playerRemainingSeconds: setting.seconds,
-      opponentRemainingSeconds: setting.seconds,
+      playerSeconds: seconds,
+      opponentSeconds: seconds,
     );
   }
 }
 
-final playProvider = StateNotifierProvider<PlayNotifier, Play>((ref) {
-  final setting = ref.watch(settingProvider);
-  return PlayNotifier(setting.seconds, setting.seconds);
-});
+final playProvider =
+    StateNotifierProvider.autoDispose.family<PlayNotifier, Play, int>(
+  (ref, seconds) {
+    return PlayNotifier(seconds, seconds);
+  },
+);

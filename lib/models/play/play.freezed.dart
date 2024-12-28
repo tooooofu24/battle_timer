@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Play {
-  int get playerRemainingSeconds => throw _privateConstructorUsedError;
-  int get opponentRemainingSeconds => throw _privateConstructorUsedError;
+  int get playerSeconds => throw _privateConstructorUsedError;
+  int get opponentSeconds => throw _privateConstructorUsedError;
   bool get isPlaying => throw _privateConstructorUsedError;
   bool get isPlayerTurn => throw _privateConstructorUsedError;
 
@@ -33,8 +33,8 @@ abstract class $PlayCopyWith<$Res> {
       _$PlayCopyWithImpl<$Res, Play>;
   @useResult
   $Res call(
-      {int playerRemainingSeconds,
-      int opponentRemainingSeconds,
+      {int playerSeconds,
+      int opponentSeconds,
       bool isPlaying,
       bool isPlayerTurn});
 }
@@ -54,19 +54,19 @@ class _$PlayCopyWithImpl<$Res, $Val extends Play>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playerRemainingSeconds = null,
-    Object? opponentRemainingSeconds = null,
+    Object? playerSeconds = null,
+    Object? opponentSeconds = null,
     Object? isPlaying = null,
     Object? isPlayerTurn = null,
   }) {
     return _then(_value.copyWith(
-      playerRemainingSeconds: null == playerRemainingSeconds
-          ? _value.playerRemainingSeconds
-          : playerRemainingSeconds // ignore: cast_nullable_to_non_nullable
+      playerSeconds: null == playerSeconds
+          ? _value.playerSeconds
+          : playerSeconds // ignore: cast_nullable_to_non_nullable
               as int,
-      opponentRemainingSeconds: null == opponentRemainingSeconds
-          ? _value.opponentRemainingSeconds
-          : opponentRemainingSeconds // ignore: cast_nullable_to_non_nullable
+      opponentSeconds: null == opponentSeconds
+          ? _value.opponentSeconds
+          : opponentSeconds // ignore: cast_nullable_to_non_nullable
               as int,
       isPlaying: null == isPlaying
           ? _value.isPlaying
@@ -88,8 +88,8 @@ abstract class _$$PlayImplCopyWith<$Res> implements $PlayCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int playerRemainingSeconds,
-      int opponentRemainingSeconds,
+      {int playerSeconds,
+      int opponentSeconds,
       bool isPlaying,
       bool isPlayerTurn});
 }
@@ -106,19 +106,19 @@ class __$$PlayImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playerRemainingSeconds = null,
-    Object? opponentRemainingSeconds = null,
+    Object? playerSeconds = null,
+    Object? opponentSeconds = null,
     Object? isPlaying = null,
     Object? isPlayerTurn = null,
   }) {
     return _then(_$PlayImpl(
-      playerRemainingSeconds: null == playerRemainingSeconds
-          ? _value.playerRemainingSeconds
-          : playerRemainingSeconds // ignore: cast_nullable_to_non_nullable
+      playerSeconds: null == playerSeconds
+          ? _value.playerSeconds
+          : playerSeconds // ignore: cast_nullable_to_non_nullable
               as int,
-      opponentRemainingSeconds: null == opponentRemainingSeconds
-          ? _value.opponentRemainingSeconds
-          : opponentRemainingSeconds // ignore: cast_nullable_to_non_nullable
+      opponentSeconds: null == opponentSeconds
+          ? _value.opponentSeconds
+          : opponentSeconds // ignore: cast_nullable_to_non_nullable
               as int,
       isPlaying: null == isPlaying
           ? _value.isPlaying
@@ -136,16 +136,16 @@ class __$$PlayImplCopyWithImpl<$Res>
 
 class _$PlayImpl extends _Play {
   const _$PlayImpl(
-      {required this.playerRemainingSeconds,
-      required this.opponentRemainingSeconds,
+      {required this.playerSeconds,
+      required this.opponentSeconds,
       this.isPlaying = false,
       this.isPlayerTurn = true})
       : super._();
 
   @override
-  final int playerRemainingSeconds;
+  final int playerSeconds;
   @override
-  final int opponentRemainingSeconds;
+  final int opponentSeconds;
   @override
   @JsonKey()
   final bool isPlaying;
@@ -155,7 +155,7 @@ class _$PlayImpl extends _Play {
 
   @override
   String toString() {
-    return 'Play(playerRemainingSeconds: $playerRemainingSeconds, opponentRemainingSeconds: $opponentRemainingSeconds, isPlaying: $isPlaying, isPlayerTurn: $isPlayerTurn)';
+    return 'Play(playerSeconds: $playerSeconds, opponentSeconds: $opponentSeconds, isPlaying: $isPlaying, isPlayerTurn: $isPlayerTurn)';
   }
 
   @override
@@ -163,11 +163,10 @@ class _$PlayImpl extends _Play {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayImpl &&
-            (identical(other.playerRemainingSeconds, playerRemainingSeconds) ||
-                other.playerRemainingSeconds == playerRemainingSeconds) &&
-            (identical(
-                    other.opponentRemainingSeconds, opponentRemainingSeconds) ||
-                other.opponentRemainingSeconds == opponentRemainingSeconds) &&
+            (identical(other.playerSeconds, playerSeconds) ||
+                other.playerSeconds == playerSeconds) &&
+            (identical(other.opponentSeconds, opponentSeconds) ||
+                other.opponentSeconds == opponentSeconds) &&
             (identical(other.isPlaying, isPlaying) ||
                 other.isPlaying == isPlaying) &&
             (identical(other.isPlayerTurn, isPlayerTurn) ||
@@ -175,8 +174,8 @@ class _$PlayImpl extends _Play {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, playerRemainingSeconds,
-      opponentRemainingSeconds, isPlaying, isPlayerTurn);
+  int get hashCode => Object.hash(
+      runtimeType, playerSeconds, opponentSeconds, isPlaying, isPlayerTurn);
 
   /// Create a copy of Play
   /// with the given fields replaced by the non-null parameter values.
@@ -189,16 +188,16 @@ class _$PlayImpl extends _Play {
 
 abstract class _Play extends Play {
   const factory _Play(
-      {required final int playerRemainingSeconds,
-      required final int opponentRemainingSeconds,
+      {required final int playerSeconds,
+      required final int opponentSeconds,
       final bool isPlaying,
       final bool isPlayerTurn}) = _$PlayImpl;
   const _Play._() : super._();
 
   @override
-  int get playerRemainingSeconds;
+  int get playerSeconds;
   @override
-  int get opponentRemainingSeconds;
+  int get opponentSeconds;
   @override
   bool get isPlaying;
   @override

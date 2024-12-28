@@ -8,12 +8,12 @@ class Setting with _$Setting {
   const Setting._();
 
   const factory Setting({
-    @Default('太郎') String playerName, // 自分の名前
-    @Default('花子') String opponentName, // 相手の名前
+    @Default('プレイヤー1') String playerName, // 自分の名前
+    @Default('プレイヤー2') String opponentName, // 相手の名前
     @Default(Rotation.up) Rotation rotation, // 回転
     @Default(0) int hour, // 時
     @Default(10) int minute, // 分
-    @Default(10) int second, // 秒
+    @Default(0) int second, // 秒
   }) = _Setting;
 
   String get time {

@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/common/components/time_display.dart';
 import 'package:battle_timer/features/setting/components/player_name_field.dart';
 import 'package:battle_timer/features/setting/components/setting_bottom_sheet.dart';
 import 'package:battle_timer/models/setting/setting.dart';
@@ -45,10 +46,7 @@ class SettingCard extends StatelessWidget {
                           setTime: setTime,
                         ),
                       ),
-                      child: Text(
-                        setting.time,
-                        style: Theme.of(context).textTheme.displayLarge,
-                      ),
+                      child: TimeDisplay(time: setting.time),
                     ),
                   ),
                 ),

@@ -35,7 +35,10 @@ class _PlayerNameFieldState extends State<PlayerNameField> {
     return AutoSizeTextField(
       controller: _controller,
       onChanged: widget.onChanged,
-      style: Theme.of(context).textTheme.headlineMedium,
+      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            color: Colors.blueGrey,
+            fontWeight: FontWeight.bold,
+          ),
       textAlign: TextAlign.center,
       maxLines: 1,
     );

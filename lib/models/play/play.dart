@@ -5,8 +5,8 @@ part 'play.freezed.dart';
 @freezed
 class Play with _$Play {
   const factory Play({
-    required int playerRemainingSeconds,
-    required int opponentRemainingSeconds,
+    required int playerSeconds,
+    required int opponentSeconds,
     @Default(false) bool isPlaying,
     @Default(true) bool isPlayerTurn,
   }) = _Play;
@@ -14,9 +14,9 @@ class Play with _$Play {
   const Play._();
 
   String get playerTime {
-    final hour = playerRemainingSeconds ~/ 3600;
-    final minute = (playerRemainingSeconds % 3600) ~/ 60;
-    final second = playerRemainingSeconds % 60;
+    final hour = playerSeconds ~/ 3600;
+    final minute = (playerSeconds % 3600) ~/ 60;
+    final second = playerSeconds % 60;
     if (hour == 0 && minute == 0) {
       return second.toString();
     }
@@ -27,9 +27,9 @@ class Play with _$Play {
   }
 
   String get opponentTime {
-    final hour = opponentRemainingSeconds ~/ 3600;
-    final minute = (opponentRemainingSeconds % 3600) ~/ 60;
-    final second = opponentRemainingSeconds % 60;
+    final hour = opponentSeconds ~/ 3600;
+    final minute = (opponentSeconds % 3600) ~/ 60;
+    final second = opponentSeconds % 60;
     if (hour == 0 && minute == 0) {
       return second.toString();
     }
