@@ -28,6 +28,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         primarySwatch: Colors.blueGrey,
+        scaffoldBackgroundColor: Color(0xFFF8FAFC),
       ),
       initialRoute: '/',
       routes: {

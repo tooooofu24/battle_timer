@@ -7,7 +7,7 @@ class SettingCard extends StatelessWidget {
   final Setting setting;
   final String playerName;
   final void Function(String) setPlayerName;
-  final void Function(int, int) setTime;
+  final void Function(int, int, int) setTime;
 
   const SettingCard({
     required this.setting,
@@ -39,6 +39,7 @@ class SettingCard extends StatelessWidget {
                       onPressed: () => showModalBottomSheet(
                         context: context,
                         builder: (context) => SettingBottomSheet(
+                          defaultHour: setting.hour,
                           defaultMinute: setting.minute,
                           defaultSecond: setting.second,
                           setTime: setTime,

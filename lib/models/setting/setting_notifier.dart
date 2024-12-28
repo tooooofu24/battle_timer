@@ -9,8 +9,8 @@ class SettingNotifier extends StateNotifier<Setting> {
     state = state.copyWith(rotation: state.rotation.rotate());
   }
 
-  void setTime(int minute, int second) {
-    state = state.copyWith(minute: minute, second: second);
+  void setTime(int hour, int minute, int second) {
+    state = state.copyWith(hour: hour, minute: minute, second: second);
   }
 
   void setPlayerName(String playerName) {

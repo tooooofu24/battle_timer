@@ -19,6 +19,7 @@ mixin _$Setting {
   String get playerName => throw _privateConstructorUsedError; // 自分の名前
   String get opponentName => throw _privateConstructorUsedError; // 相手の名前
   Rotation get rotation => throw _privateConstructorUsedError; // 回転
+  int get hour => throw _privateConstructorUsedError; // 時
   int get minute => throw _privateConstructorUsedError; // 分
   int get second => throw _privateConstructorUsedError;
 
@@ -37,6 +38,7 @@ abstract class $SettingCopyWith<$Res> {
       {String playerName,
       String opponentName,
       Rotation rotation,
+      int hour,
       int minute,
       int second});
 }
@@ -59,6 +61,7 @@ class _$SettingCopyWithImpl<$Res, $Val extends Setting>
     Object? playerName = null,
     Object? opponentName = null,
     Object? rotation = null,
+    Object? hour = null,
     Object? minute = null,
     Object? second = null,
   }) {
@@ -75,6 +78,10 @@ class _$SettingCopyWithImpl<$Res, $Val extends Setting>
           ? _value.rotation
           : rotation // ignore: cast_nullable_to_non_nullable
               as Rotation,
+      hour: null == hour
+          ? _value.hour
+          : hour // ignore: cast_nullable_to_non_nullable
+              as int,
       minute: null == minute
           ? _value.minute
           : minute // ignore: cast_nullable_to_non_nullable
@@ -98,6 +105,7 @@ abstract class _$$SettingImplCopyWith<$Res> implements $SettingCopyWith<$Res> {
       {String playerName,
       String opponentName,
       Rotation rotation,
+      int hour,
       int minute,
       int second});
 }
@@ -118,6 +126,7 @@ class __$$SettingImplCopyWithImpl<$Res>
     Object? playerName = null,
     Object? opponentName = null,
     Object? rotation = null,
+    Object? hour = null,
     Object? minute = null,
     Object? second = null,
   }) {
@@ -134,6 +143,10 @@ class __$$SettingImplCopyWithImpl<$Res>
           ? _value.rotation
           : rotation // ignore: cast_nullable_to_non_nullable
               as Rotation,
+      hour: null == hour
+          ? _value.hour
+          : hour // ignore: cast_nullable_to_non_nullable
+              as int,
       minute: null == minute
           ? _value.minute
           : minute // ignore: cast_nullable_to_non_nullable
@@ -153,6 +166,7 @@ class _$SettingImpl extends _Setting {
       {this.playerName = 'プレイヤー1',
       this.opponentName = 'プレイヤー2',
       this.rotation = Rotation.up,
+      this.hour = 0,
       this.minute = 10,
       this.second = 0})
       : super._();
@@ -171,6 +185,10 @@ class _$SettingImpl extends _Setting {
 // 回転
   @override
   @JsonKey()
+  final int hour;
+// 時
+  @override
+  @JsonKey()
   final int minute;
 // 分
   @override
@@ -179,7 +197,7 @@ class _$SettingImpl extends _Setting {
 
   @override
   String toString() {
-    return 'Setting(playerName: $playerName, opponentName: $opponentName, rotation: $rotation, minute: $minute, second: $second)';
+    return 'Setting(playerName: $playerName, opponentName: $opponentName, rotation: $rotation, hour: $hour, minute: $minute, second: $second)';
   }
 
   @override
@@ -193,13 +211,14 @@ class _$SettingImpl extends _Setting {
                 other.opponentName == opponentName) &&
             (identical(other.rotation, rotation) ||
                 other.rotation == rotation) &&
+            (identical(other.hour, hour) || other.hour == hour) &&
             (identical(other.minute, minute) || other.minute == minute) &&
             (identical(other.second, second) || other.second == second));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, playerName, opponentName, rotation, minute, second);
+      runtimeType, playerName, opponentName, rotation, hour, minute, second);
 
   /// Create a copy of Setting
   /// with the given fields replaced by the non-null parameter values.
@@ -215,6 +234,7 @@ abstract class _Setting extends Setting {
       {final String playerName,
       final String opponentName,
       final Rotation rotation,
+      final int hour,
       final int minute,
       final int second}) = _$SettingImpl;
   const _Setting._() : super._();
@@ -225,6 +245,8 @@ abstract class _Setting extends Setting {
   String get opponentName; // 相手の名前
   @override
   Rotation get rotation; // 回転
+  @override
+  int get hour; // 時
   @override
   int get minute; // 分
   @override

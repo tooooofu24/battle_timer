@@ -1,6 +1,6 @@
 import 'package:battle_timer/features/play/components/play_card.dart';
-import 'package:battle_timer/models/setting/game_notifier.dart';
 import 'package:battle_timer/models/setting/rotation.dart';
+import 'package:battle_timer/models/setting/setting_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,7 +13,6 @@ class PlayScreen extends ConsumerWidget {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        backgroundColor: Color(0xFFF8FAFC),
         body: SafeArea(
           child: Center(
             child: FractionallySizedBox(

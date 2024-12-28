@@ -1,12 +1,15 @@
 import 'package:battle_timer/features/setting/components/hour_minute_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class SettingBottomSheet extends StatefulWidget {
+class SettingBottomSheet extends HookWidget {
+  final int defaultHour;
   final int defaultMinute;
   final int defaultSecond;
-  final void Function(int, int) setTime;
+  final void Function(int, int, int) setTime;
 
   const SettingBottomSheet({
+    required this.defaultHour,
     required this.defaultMinute,
     required this.defaultSecond,
     required this.setTime,
@@ -14,22 +17,11 @@ class SettingBottomSheet extends StatefulWidget {
   });
 
   @override
-  State<SettingBottomSheet> createState() => _SettingBottomSheetState();
-}
-
-class _SettingBottomSheetState extends State<SettingBottomSheet> {
-  late int minute;
-  late int second;
-
-  @override
-  void initState() {
-    super.initState();
-    minute = widget.defaultMinute;
-    second = widget.defaultSecond;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final hour = useState(defaultHour);
+    final minute = useState(defaultMinute);
+    final second = useState(defaultSecond);
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(
@@ -44,16 +36,23 @@ class _SettingBottomSheetState extends State<SettingBottomSheet> {
               children: [
                 Expanded(
                   child: HourMinutePicker(
-                    count: 100,
-                    defaultValue: widget.defaultMinute,
-                    onSelected: (value) => setState(() => minute = value),
+                    count: 24,
+                    defaultValue: defaultHour,
+                    onSelected: (value) => hour.value = value,
                   ),
                 ),
                 Expanded(
                   child: HourMinutePicker(
                     count: 60,
-                    defaultValue: widget.defaultSecond,
-                    onSelected: (value) => setState(() => second = value),
+                    defaultValue: defaultMinute,
+                    onSelected: (value) => minute.value = value,
+                  ),
+                ),
+                Expanded(
+                  child: HourMinutePicker(
+                    count: 60,
+                    defaultValue: defaultSecond,
+                    onSelected: (value) => second.value = value,
                   ),
                 )
               ],
@@ -67,7 +66,7 @@ class _SettingBottomSheetState extends State<SettingBottomSheet> {
                   size: 40.0,
                 ),
                 onPressed: () {
-                  widget.setTime(minute, second);
+                  setTime(hour.value, minute.value, second.value);
                   Navigator.pop(context);
                 },
               ),
