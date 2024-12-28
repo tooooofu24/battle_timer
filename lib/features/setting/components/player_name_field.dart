@@ -2,11 +2,11 @@ import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:flutter/material.dart';
 
 class PlayerNameField extends StatefulWidget {
-  final String initialValue;
+  final String playerName;
   final void Function(String) onChanged;
 
   const PlayerNameField({
-    required this.initialValue,
+    required this.playerName,
     required this.onChanged,
     super.key,
   });
@@ -21,7 +21,7 @@ class _PlayerNameFieldState extends State<PlayerNameField> {
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: widget.initialValue);
+    _controller = TextEditingController(text: widget.playerName);
   }
 
   @override

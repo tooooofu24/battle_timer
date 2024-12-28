@@ -30,7 +30,7 @@ class SettingCard extends StatelessWidget {
             child: Column(
               children: [
                 PlayerNameField(
-                  initialValue: playerName,
+                  playerName: playerName,
                   onChanged: setPlayerName,
                 ),
                 Expanded(

@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/play/play_screen.dart';
 import 'package:battle_timer/features/setting/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +29,11 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
         primarySwatch: Colors.blueGrey,
       ),
-      home: const SettingScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const PlayScreen(),
+        '/setting': (context) => const SettingScreen(),
+      },
     );
   }
 }

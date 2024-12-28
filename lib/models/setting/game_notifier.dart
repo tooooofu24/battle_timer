@@ -20,6 +20,10 @@ class SettingNotifier extends StateNotifier<Setting> {
   void setOpponentName(String opponentName) {
     state = state.copyWith(opponentName: opponentName);
   }
+
+  void reset() {
+    state = const Setting();
+  }
 }
 
 final settingProvider = StateNotifierProvider<SettingNotifier, Setting>((ref) {

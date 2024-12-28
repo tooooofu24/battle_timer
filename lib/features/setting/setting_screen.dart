@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/setting/components/reset_button.dart';
 import 'package:battle_timer/features/setting/components/setting_card.dart';
 import 'package:battle_timer/models/setting/game_notifier.dart';
 import 'package:battle_timer/models/setting/rotation.dart';
@@ -37,21 +38,27 @@ class SettingScreen extends ConsumerWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          ResetButton(
+                            onPressed: () {
+                              notifier.reset();
+                              Navigator.pop(context);
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.screen_rotation_rounded,
+                              color: Colors.blueGrey,
+                              size: 40.0,
+                            ),
+                            onPressed: () => notifier.rotate(),
+                          ),
                           IconButton(
                             icon: Icon(
                               Icons.done_rounded,
                               color: Colors.blueGrey,
                               size: 40.0,
                             ),
-                            onPressed: () => {},
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.autorenew_rounded,
-                              color: Colors.blueGrey,
-                              size: 40.0,
-                            ),
-                            onPressed: () => notifier.rotate(),
+                            onPressed: () => Navigator.pop(context),
                           ),
                         ],
                       ),
