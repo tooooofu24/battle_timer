@@ -22,15 +22,28 @@ class PlayCard extends StatelessWidget {
             padding: const EdgeInsets.all(24),
             child: Column(
               children: [
-                Text(
-                  playerName,
-                  style: Theme.of(context).textTheme.headlineMedium,
+                SizedBox(
+                  height: 52,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      playerName,
+                      textAlign: TextAlign.center,
+                      style:
+                          Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                color: Colors.blueGrey,
+                              ),
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: Center(
-                    child: Text(
-                      time,
-                      style: Theme.of(context).textTheme.displayLarge,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        time,
+                        style: TextStyle(fontSize: 112),
+                      ),
                     ),
                   ),
                 ),

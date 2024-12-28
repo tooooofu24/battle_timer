@@ -37,8 +37,7 @@ class _PlayerNameFieldState extends State<PlayerNameField> {
       onChanged: widget.onChanged,
       style: Theme.of(context).textTheme.headlineMedium,
       textAlign: TextAlign.center,
-      minLines: 1,
-      maxLines: 2,
+      maxLines: 1,
     );
   }
 }
