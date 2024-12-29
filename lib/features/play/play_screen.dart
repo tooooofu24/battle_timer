@@ -40,7 +40,7 @@ class PlayScreen extends ConsumerWidget {
                   SizedBox(
                     height: 72,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         PlayResetButton(
                           disabled: !play.hasStarted,

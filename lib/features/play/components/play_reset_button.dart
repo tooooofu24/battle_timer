@@ -15,7 +15,7 @@ class PlayResetButton extends StatelessWidget {
       icon: Icon(
         Icons.stop_rounded,
         color: Colors.blueGrey,
-        size: 40.0,
+        size: 45.0,
       ),
       onPressed: () async {
         if (disabled) return;

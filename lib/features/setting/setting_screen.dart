@@ -1,5 +1,6 @@
 import 'package:battle_timer/features/setting/components/setting_card.dart';
 import 'package:battle_timer/features/setting/components/setting_reset_button.dart';
+import 'package:battle_timer/models/play/play_notifier.dart';
 import 'package:battle_timer/models/setting/rotation.dart';
 import 'package:battle_timer/models/setting/setting_notifier.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,10 @@ class SettingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(settingProvider);
-    final notifier = ref.read(settingProvider.notifier);
+    final setting = ref.watch(settingProvider);
+    final settingNotifier = ref.read(settingProvider.notifier);
+    final provider = playProvider(setting.seconds);
+    final playNotifier = ref.read(provider.notifier);
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -24,22 +27,22 @@ class SettingScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     RotatedBox(
-                      quarterTurns: state.rotation.opponentQuarterTurns,
+                      quarterTurns: setting.rotation.opponentQuarterTurns,
                       child: SettingCard(
-                        setting: state,
-                        playerName: state.opponentName,
-                        setPlayerName: notifier.setOpponentName,
-                        setTime: notifier.setTime,
+                        setting: setting,
+                        playerName: setting.opponentName,
+                        setPlayerName: settingNotifier.setOpponentName,
+                        setTime: settingNotifier.setTime,
                       ),
                     ),
                     SizedBox(
                       height: 72,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SettingResetButton(
                             onPressed: () {
-                              notifier.reset();
+                              settingNotifier.reset();
                               Navigator.pop(context);
                             },
                           ),
@@ -47,28 +50,31 @@ class SettingScreen extends ConsumerWidget {
                             icon: Icon(
                               Icons.screen_rotation_rounded,
                               color: Colors.blueGrey,
-                              size: 40.0,
+                              size: 45.0,
                             ),
-                            onPressed: () => notifier.rotate(),
+                            onPressed: () => settingNotifier.rotate(),
                           ),
                           IconButton(
                             icon: Icon(
                               Icons.done_rounded,
                               color: Colors.blueGrey,
-                              size: 40.0,
+                              size: 45.0,
                             ),
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () {
+                              playNotifier.reset(setting.seconds);
+                              Navigator.pop(context);
+                            },
                           ),
                         ],
                       ),
                     ),
                     RotatedBox(
-                      quarterTurns: state.rotation.playerQuarterTurns,
+                      quarterTurns: setting.rotation.playerQuarterTurns,
                       child: SettingCard(
-                        setting: state,
-                        playerName: state.playerName,
-                        setPlayerName: notifier.setPlayerName,
-                        setTime: notifier.setTime,
+                        setting: setting,
+                        playerName: setting.playerName,
+                        setPlayerName: settingNotifier.setPlayerName,
+                        setTime: settingNotifier.setTime,
                       ),
                     ),
                   ],

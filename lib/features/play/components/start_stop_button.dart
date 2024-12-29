@@ -18,7 +18,7 @@ class StartStopButton extends StatelessWidget {
             icon: Icon(
               Icons.pause_rounded,
               color: Colors.blueGrey,
-              size: 40.0,
+              size: 45.0,
             ),
             onPressed: onStop,
           )
@@ -26,7 +26,7 @@ class StartStopButton extends StatelessWidget {
             icon: Icon(
               Icons.play_arrow_rounded,
               color: Colors.blueGrey,
-              size: 40.0,
+              size: 45.0,
             ),
             onPressed: onStart,
           );

@@ -63,7 +63,7 @@ class SettingBottomSheet extends HookWidget {
                 icon: Icon(
                   Icons.done_rounded,
                   color: Colors.blueGrey,
-                  size: 40.0,
+                  size: 45.0,
                 ),
                 onPressed: () {
                   setTime(hour.value, minute.value, second.value);
