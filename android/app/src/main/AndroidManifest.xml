@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="battle_timer"
+        android:label="対戦タイマー"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
