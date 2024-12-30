@@ -1,4 +1,3 @@
-import 'package:battle_timer/features/common/components/timer_icon_button.dart';
 import 'package:battle_timer/features/setting/components/time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -43,6 +42,7 @@ class SettingBottomSheet extends HookWidget {
       child: Padding(
         padding: const EdgeInsets.only(
           top: 24,
+          bottom: 12,
           right: 16,
           left: 16,
         ),
@@ -79,16 +79,31 @@ class SettingBottomSheet extends HookWidget {
                   autoPlay: false,
                 )
                 .shakeX(),
-            SizedBox(
-              width: double.infinity,
-              child: TimerIconButton(
-                icon: Icons.done_rounded,
-                onPressed: () {
-                  if (!validate()) return;
-                  setTime(hour.value, minute.value, second.value);
-                  Navigator.pop(context);
-                },
-              ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {
+                      if (!validate()) return;
+                      setTime(hour.value, minute.value, second.value);
+                      Navigator.pop(context);
+                    },
+                    child: Text('設定する'),
+                  ),
+                ),
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {
+                      if (!validate()) return;
+                      setBothTime(hour.value, minute.value, second.value);
+                      Navigator.pop(context);
+                    },
+                    child: Text('両方に設定する'),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
