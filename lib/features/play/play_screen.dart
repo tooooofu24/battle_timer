@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/common/components/time_animated_rotation.dart';
 import 'package:battle_timer/features/play/components/play_card.dart';
 import 'package:battle_timer/features/play/components/play_reset_button.dart';
 import 'package:battle_timer/features/play/components/play_setting_button.dart';
@@ -28,8 +29,8 @@ class PlayScreen extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  RotatedBox(
-                    quarterTurns: setting.rotation.opponentQuarterTurns,
+                  TimeAnimatedRotation(
+                    turns: setting.rotation.opponentTurns,
                     child: PlayCard(
                       playerName: setting.opponentName,
                       time: play.opponentTime,
@@ -61,8 +62,8 @@ class PlayScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  RotatedBox(
-                    quarterTurns: setting.rotation.playerQuarterTurns,
+                  TimeAnimatedRotation(
+                    turns: setting.rotation.playerTurns,
                     child: PlayCard(
                       playerName: setting.playerName,
                       time: play.playerTime,

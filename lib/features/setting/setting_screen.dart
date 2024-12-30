@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/common/components/time_animated_rotation.dart';
 import 'package:battle_timer/features/common/components/timer_icon_button.dart';
 import 'package:battle_timer/features/setting/components/setting_card.dart';
 import 'package:battle_timer/features/setting/components/setting_reset_button.dart';
@@ -27,8 +28,8 @@ class SettingScreen extends ConsumerWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    RotatedBox(
-                      quarterTurns: setting.rotation.opponentQuarterTurns,
+                    TimeAnimatedRotation(
+                      turns: setting.rotation.opponentTurns,
                       child: SettingCard(
                         setting: setting,
                         playerName: setting.opponentName,
@@ -62,8 +63,8 @@ class SettingScreen extends ConsumerWidget {
                         ],
                       ),
                     ),
-                    RotatedBox(
-                      quarterTurns: setting.rotation.playerQuarterTurns,
+                    TimeAnimatedRotation(
+                      turns: setting.rotation.playerTurns,
                       child: SettingCard(
                         setting: setting,
                         playerName: setting.playerName,
