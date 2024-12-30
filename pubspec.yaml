@@ -40,6 +40,7 @@ dependencies:
   auto_size_text_field: ^2.2.4
   flutter_hooks: ^0.20.5
   flutter_launcher_icons: ^0.14.2
+  flutter_animate: ^4.5.2
 
 dev_dependencies:
   flutter_test:

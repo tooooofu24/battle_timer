@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
-class HourMinutePicker extends StatelessWidget {
+class TimePicker extends StatelessWidget {
   final int count;
   final int defaultValue;
   final void Function(int) onSelected;
 
-  const HourMinutePicker({
+  const TimePicker({
     required this.count,
     this.defaultValue = 0,
     required this.onSelected,
