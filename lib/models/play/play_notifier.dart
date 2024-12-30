@@ -14,19 +14,19 @@ class PlayNotifier extends StateNotifier<Play> {
 
   final timerService = TimerService();
 
-  void tapPlayerTimer() {
+  void tapPlayerTimer(int increment) {
     // プレイ中 && 相手のターンの場合は何もしない
     if (state.isPlaying && !state.isPlayerTurn) {
       return;
     }
-    // Playの状態を更新
-    state = state.copyWith(
-      isPlaying: true,
-      hasStarted: true,
-      isPlayerTurn: false,
-    );
     // タイマーを止める
     timerService.stop();
+    // Playの状態を更新
+    state = state.copyWith(
+        isPlaying: true,
+        hasStarted: true,
+        isPlayerTurn: false,
+        playerSeconds: state.playerSeconds + increment);
     // 1秒ごとにopponentSecondsを1減らす
     timerService.start(
       state.opponentSeconds,
@@ -34,19 +34,20 @@ class PlayNotifier extends StateNotifier<Play> {
     );
   }
 
-  void tapOpponentTimer() {
+  void tapOpponentTimer(int increment) {
     // プレイ中 && プレイヤーのターンの場合は何もしない
     if (state.isPlaying && state.isPlayerTurn) {
       return;
     }
+    // タイマーを止める
+    timerService.stop();
     // Playの状態を更新
     state = state.copyWith(
       isPlaying: true,
       hasStarted: true,
       isPlayerTurn: true,
+      opponentSeconds: state.opponentSeconds + increment,
     );
-    // タイマーを止める
-    timerService.stop();
     // 1秒ごとにplayerSecondsを1減らす
     timerService.start(
       state.playerSeconds,
@@ -61,9 +62,9 @@ class PlayNotifier extends StateNotifier<Play> {
 
   void start() {
     if (state.isPlayerTurn) {
-      tapOpponentTimer();
+      tapOpponentTimer(0);
     } else {
-      tapPlayerTimer();
+      tapPlayerTimer(0);
     }
   }
 

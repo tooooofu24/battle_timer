@@ -8,10 +8,10 @@ class TimerService {
     var remaining = duration;
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      remaining--;
-      onTick(remaining);
-
-      if (remaining <= 0) {
+      if (remaining > 0) {
+        remaining--;
+        onTick(remaining);
+      } else {
         timer.cancel();
       }
     });
