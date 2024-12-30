@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class SettingBottomSheet extends HookWidget {
+class TimeBottomSheet extends HookWidget {
   final int defaultHour;
   final int defaultMinute;
   final int defaultSecond;
   final void Function(int, int, int) setTime;
   final void Function(int, int, int) setBothTime;
 
-  const SettingBottomSheet({
+  const TimeBottomSheet({
     required this.defaultHour,
     required this.defaultMinute,
     required this.defaultSecond,

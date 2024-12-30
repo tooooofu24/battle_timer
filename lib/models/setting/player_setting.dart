@@ -7,10 +7,11 @@ class PlayerSetting with _$PlayerSetting {
   const PlayerSetting._();
 
   const factory PlayerSetting({
+    required String name,
     @Default(0) int hour,
     @Default(5) int minute,
     @Default(0) int second,
-    required String name,
+    @Default(5) int increment,
   }) = _PlayerSetting;
 
   String get displayTime {

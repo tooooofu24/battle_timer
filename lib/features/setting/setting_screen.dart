@@ -35,6 +35,8 @@ class SettingScreen extends ConsumerWidget {
                         setPlayerName: settingNotifier.setOpponentName,
                         setTime: settingNotifier.setOpponentTime,
                         setBothTime: settingNotifier.setBothTime,
+                        setIncrement: settingNotifier.setOpponentIncrement,
+                        setBothIncrement: settingNotifier.setBothIncrement,
                       ),
                     ),
                     SizedBox(
@@ -70,6 +72,8 @@ class SettingScreen extends ConsumerWidget {
                         setPlayerName: settingNotifier.setPlayerName,
                         setTime: settingNotifier.setPlayerTime,
                         setBothTime: settingNotifier.setBothTime,
+                        setIncrement: settingNotifier.setPlayerIncrement,
+                        setBothIncrement: settingNotifier.setBothIncrement,
                       ),
                     ),
                   ],

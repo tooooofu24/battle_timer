@@ -16,10 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PlayerSetting {
+  String get name => throw _privateConstructorUsedError;
   int get hour => throw _privateConstructorUsedError;
   int get minute => throw _privateConstructorUsedError;
   int get second => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  int get increment => throw _privateConstructorUsedError;
 
   /// Create a copy of PlayerSetting
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +35,7 @@ abstract class $PlayerSettingCopyWith<$Res> {
           PlayerSetting value, $Res Function(PlayerSetting) then) =
       _$PlayerSettingCopyWithImpl<$Res, PlayerSetting>;
   @useResult
-  $Res call({int hour, int minute, int second, String name});
+  $Res call({String name, int hour, int minute, int second, int increment});
 }
 
 /// @nodoc
@@ -52,12 +53,17 @@ class _$PlayerSettingCopyWithImpl<$Res, $Val extends PlayerSetting>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? hour = null,
     Object? minute = null,
     Object? second = null,
-    Object? name = null,
+    Object? increment = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       hour: null == hour
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
@@ -70,10 +76,10 @@ class _$PlayerSettingCopyWithImpl<$Res, $Val extends PlayerSetting>
           ? _value.second
           : second // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      increment: null == increment
+          ? _value.increment
+          : increment // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -86,7 +92,7 @@ abstract class _$$PlayerSettingImplCopyWith<$Res>
       __$$PlayerSettingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int hour, int minute, int second, String name});
+  $Res call({String name, int hour, int minute, int second, int increment});
 }
 
 /// @nodoc
@@ -102,12 +108,17 @@ class __$$PlayerSettingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? hour = null,
     Object? minute = null,
     Object? second = null,
-    Object? name = null,
+    Object? increment = null,
   }) {
     return _then(_$PlayerSettingImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       hour: null == hour
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
@@ -120,10 +131,10 @@ class __$$PlayerSettingImplCopyWithImpl<$Res>
           ? _value.second
           : second // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      increment: null == increment
+          ? _value.increment
+          : increment // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -132,9 +143,15 @@ class __$$PlayerSettingImplCopyWithImpl<$Res>
 
 class _$PlayerSettingImpl extends _PlayerSetting {
   const _$PlayerSettingImpl(
-      {this.hour = 0, this.minute = 5, this.second = 0, required this.name})
+      {required this.name,
+      this.hour = 0,
+      this.minute = 5,
+      this.second = 0,
+      this.increment = 5})
       : super._();
 
+  @override
+  final String name;
   @override
   @JsonKey()
   final int hour;
@@ -145,11 +162,12 @@ class _$PlayerSettingImpl extends _PlayerSetting {
   @JsonKey()
   final int second;
   @override
-  final String name;
+  @JsonKey()
+  final int increment;
 
   @override
   String toString() {
-    return 'PlayerSetting(hour: $hour, minute: $minute, second: $second, name: $name)';
+    return 'PlayerSetting(name: $name, hour: $hour, minute: $minute, second: $second, increment: $increment)';
   }
 
   @override
@@ -157,14 +175,17 @@ class _$PlayerSettingImpl extends _PlayerSetting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerSettingImpl &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.hour, hour) || other.hour == hour) &&
             (identical(other.minute, minute) || other.minute == minute) &&
             (identical(other.second, second) || other.second == second) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.increment, increment) ||
+                other.increment == increment));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, hour, minute, second, name);
+  int get hashCode =>
+      Object.hash(runtimeType, name, hour, minute, second, increment);
 
   /// Create a copy of PlayerSetting
   /// with the given fields replaced by the non-null parameter values.
@@ -177,12 +198,15 @@ class _$PlayerSettingImpl extends _PlayerSetting {
 
 abstract class _PlayerSetting extends PlayerSetting {
   const factory _PlayerSetting(
-      {final int hour,
+      {required final String name,
+      final int hour,
       final int minute,
       final int second,
-      required final String name}) = _$PlayerSettingImpl;
+      final int increment}) = _$PlayerSettingImpl;
   const _PlayerSetting._() : super._();
 
+  @override
+  String get name;
   @override
   int get hour;
   @override
@@ -190,7 +214,7 @@ abstract class _PlayerSetting extends PlayerSetting {
   @override
   int get second;
   @override
-  String get name;
+  int get increment;
 
   /// Create a copy of PlayerSetting
   /// with the given fields replaced by the non-null parameter values.

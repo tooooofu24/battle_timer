@@ -32,6 +32,25 @@ class SettingNotifier extends StateNotifier<Setting> {
     setOpponentTime(hour, minute, second);
   }
 
+  void setPlayerIncrement(int increment) {
+    final playerSetting = state.playerSetting.copyWith(
+      increment: increment,
+    );
+    state = state.copyWith(playerSetting: playerSetting);
+  }
+
+  void setOpponentIncrement(int increment) {
+    final opponentSetting = state.opponentSetting.copyWith(
+      increment: increment,
+    );
+    state = state.copyWith(opponentSetting: opponentSetting);
+  }
+
+  void setBothIncrement(int increment) {
+    setPlayerIncrement(increment);
+    setOpponentIncrement(increment);
+  }
+
   void setPlayerName(String playerName) {
     final playerSetting = state.playerSetting.copyWith(
       name: playerName,
