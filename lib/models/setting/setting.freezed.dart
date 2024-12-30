@@ -16,12 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Setting {
-  String get playerName => throw _privateConstructorUsedError; // 自分の名前
-  String get opponentName => throw _privateConstructorUsedError; // 相手の名前
-  Rotation get rotation => throw _privateConstructorUsedError; // 回転
-  int get hour => throw _privateConstructorUsedError; // 時
-  int get minute => throw _privateConstructorUsedError; // 分
-  int get second => throw _privateConstructorUsedError;
+  PlayerSetting get playerSetting => throw _privateConstructorUsedError;
+  PlayerSetting get opponentSetting => throw _privateConstructorUsedError;
+  Rotation get rotation => throw _privateConstructorUsedError;
 
   /// Create a copy of Setting
   /// with the given fields replaced by the non-null parameter values.
@@ -35,12 +32,12 @@ abstract class $SettingCopyWith<$Res> {
       _$SettingCopyWithImpl<$Res, Setting>;
   @useResult
   $Res call(
-      {String playerName,
-      String opponentName,
-      Rotation rotation,
-      int hour,
-      int minute,
-      int second});
+      {PlayerSetting playerSetting,
+      PlayerSetting opponentSetting,
+      Rotation rotation});
+
+  $PlayerSettingCopyWith<$Res> get playerSetting;
+  $PlayerSettingCopyWith<$Res> get opponentSetting;
 }
 
 /// @nodoc
@@ -58,39 +55,44 @@ class _$SettingCopyWithImpl<$Res, $Val extends Setting>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playerName = null,
-    Object? opponentName = null,
+    Object? playerSetting = null,
+    Object? opponentSetting = null,
     Object? rotation = null,
-    Object? hour = null,
-    Object? minute = null,
-    Object? second = null,
   }) {
     return _then(_value.copyWith(
-      playerName: null == playerName
-          ? _value.playerName
-          : playerName // ignore: cast_nullable_to_non_nullable
-              as String,
-      opponentName: null == opponentName
-          ? _value.opponentName
-          : opponentName // ignore: cast_nullable_to_non_nullable
-              as String,
+      playerSetting: null == playerSetting
+          ? _value.playerSetting
+          : playerSetting // ignore: cast_nullable_to_non_nullable
+              as PlayerSetting,
+      opponentSetting: null == opponentSetting
+          ? _value.opponentSetting
+          : opponentSetting // ignore: cast_nullable_to_non_nullable
+              as PlayerSetting,
       rotation: null == rotation
           ? _value.rotation
           : rotation // ignore: cast_nullable_to_non_nullable
               as Rotation,
-      hour: null == hour
-          ? _value.hour
-          : hour // ignore: cast_nullable_to_non_nullable
-              as int,
-      minute: null == minute
-          ? _value.minute
-          : minute // ignore: cast_nullable_to_non_nullable
-              as int,
-      second: null == second
-          ? _value.second
-          : second // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
+  }
+
+  /// Create a copy of Setting
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PlayerSettingCopyWith<$Res> get playerSetting {
+    return $PlayerSettingCopyWith<$Res>(_value.playerSetting, (value) {
+      return _then(_value.copyWith(playerSetting: value) as $Val);
+    });
+  }
+
+  /// Create a copy of Setting
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PlayerSettingCopyWith<$Res> get opponentSetting {
+    return $PlayerSettingCopyWith<$Res>(_value.opponentSetting, (value) {
+      return _then(_value.copyWith(opponentSetting: value) as $Val);
+    });
   }
 }
 
@@ -102,12 +104,14 @@ abstract class _$$SettingImplCopyWith<$Res> implements $SettingCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String playerName,
-      String opponentName,
-      Rotation rotation,
-      int hour,
-      int minute,
-      int second});
+      {PlayerSetting playerSetting,
+      PlayerSetting opponentSetting,
+      Rotation rotation});
+
+  @override
+  $PlayerSettingCopyWith<$Res> get playerSetting;
+  @override
+  $PlayerSettingCopyWith<$Res> get opponentSetting;
 }
 
 /// @nodoc
@@ -123,38 +127,23 @@ class __$$SettingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playerName = null,
-    Object? opponentName = null,
+    Object? playerSetting = null,
+    Object? opponentSetting = null,
     Object? rotation = null,
-    Object? hour = null,
-    Object? minute = null,
-    Object? second = null,
   }) {
     return _then(_$SettingImpl(
-      playerName: null == playerName
-          ? _value.playerName
-          : playerName // ignore: cast_nullable_to_non_nullable
-              as String,
-      opponentName: null == opponentName
-          ? _value.opponentName
-          : opponentName // ignore: cast_nullable_to_non_nullable
-              as String,
+      playerSetting: null == playerSetting
+          ? _value.playerSetting
+          : playerSetting // ignore: cast_nullable_to_non_nullable
+              as PlayerSetting,
+      opponentSetting: null == opponentSetting
+          ? _value.opponentSetting
+          : opponentSetting // ignore: cast_nullable_to_non_nullable
+              as PlayerSetting,
       rotation: null == rotation
           ? _value.rotation
           : rotation // ignore: cast_nullable_to_non_nullable
               as Rotation,
-      hour: null == hour
-          ? _value.hour
-          : hour // ignore: cast_nullable_to_non_nullable
-              as int,
-      minute: null == minute
-          ? _value.minute
-          : minute // ignore: cast_nullable_to_non_nullable
-              as int,
-      second: null == second
-          ? _value.second
-          : second // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -163,41 +152,24 @@ class __$$SettingImplCopyWithImpl<$Res>
 
 class _$SettingImpl extends _Setting {
   const _$SettingImpl(
-      {this.playerName = 'プレイヤー1',
-      this.opponentName = 'プレイヤー2',
-      this.rotation = Rotation.up,
-      this.hour = 0,
-      this.minute = 5,
-      this.second = 0})
+      {this.playerSetting = const PlayerSetting(name: 'プレイヤー1'),
+      this.opponentSetting = const PlayerSetting(name: 'プレイヤー2'),
+      this.rotation = Rotation.up})
       : super._();
 
   @override
   @JsonKey()
-  final String playerName;
-// 自分の名前
+  final PlayerSetting playerSetting;
   @override
   @JsonKey()
-  final String opponentName;
-// 相手の名前
+  final PlayerSetting opponentSetting;
   @override
   @JsonKey()
   final Rotation rotation;
-// 回転
-  @override
-  @JsonKey()
-  final int hour;
-// 時
-  @override
-  @JsonKey()
-  final int minute;
-// 分
-  @override
-  @JsonKey()
-  final int second;
 
   @override
   String toString() {
-    return 'Setting(playerName: $playerName, opponentName: $opponentName, rotation: $rotation, hour: $hour, minute: $minute, second: $second)';
+    return 'Setting(playerSetting: $playerSetting, opponentSetting: $opponentSetting, rotation: $rotation)';
   }
 
   @override
@@ -205,20 +177,17 @@ class _$SettingImpl extends _Setting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SettingImpl &&
-            (identical(other.playerName, playerName) ||
-                other.playerName == playerName) &&
-            (identical(other.opponentName, opponentName) ||
-                other.opponentName == opponentName) &&
+            (identical(other.playerSetting, playerSetting) ||
+                other.playerSetting == playerSetting) &&
+            (identical(other.opponentSetting, opponentSetting) ||
+                other.opponentSetting == opponentSetting) &&
             (identical(other.rotation, rotation) ||
-                other.rotation == rotation) &&
-            (identical(other.hour, hour) || other.hour == hour) &&
-            (identical(other.minute, minute) || other.minute == minute) &&
-            (identical(other.second, second) || other.second == second));
+                other.rotation == rotation));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, playerName, opponentName, rotation, hour, minute, second);
+  int get hashCode =>
+      Object.hash(runtimeType, playerSetting, opponentSetting, rotation);
 
   /// Create a copy of Setting
   /// with the given fields replaced by the non-null parameter values.
@@ -231,26 +200,17 @@ class _$SettingImpl extends _Setting {
 
 abstract class _Setting extends Setting {
   const factory _Setting(
-      {final String playerName,
-      final String opponentName,
-      final Rotation rotation,
-      final int hour,
-      final int minute,
-      final int second}) = _$SettingImpl;
+      {final PlayerSetting playerSetting,
+      final PlayerSetting opponentSetting,
+      final Rotation rotation}) = _$SettingImpl;
   const _Setting._() : super._();
 
   @override
-  String get playerName; // 自分の名前
+  PlayerSetting get playerSetting;
   @override
-  String get opponentName; // 相手の名前
+  PlayerSetting get opponentSetting;
   @override
-  Rotation get rotation; // 回転
-  @override
-  int get hour; // 時
-  @override
-  int get minute; // 分
-  @override
-  int get second;
+  Rotation get rotation;
 
   /// Create a copy of Setting
   /// with the given fields replaced by the non-null parameter values.

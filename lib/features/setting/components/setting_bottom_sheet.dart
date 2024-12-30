@@ -9,12 +9,14 @@ class SettingBottomSheet extends HookWidget {
   final int defaultMinute;
   final int defaultSecond;
   final void Function(int, int, int) setTime;
+  final void Function(int, int, int) setBothTime;
 
   const SettingBottomSheet({
     required this.defaultHour,
     required this.defaultMinute,
     required this.defaultSecond,
     required this.setTime,
+    required this.setBothTime,
     super.key,
   });
 

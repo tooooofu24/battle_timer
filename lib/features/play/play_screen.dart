@@ -15,7 +15,7 @@ class PlayScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final setting = ref.watch(settingProvider);
-    final provider = playProvider(setting.seconds);
+    final provider = playProvider(setting);
     final play = ref.watch(provider);
     final notifier = ref.read(provider.notifier);
 
@@ -32,7 +32,7 @@ class PlayScreen extends ConsumerWidget {
                   TimeAnimatedRotation(
                     turns: setting.rotation.opponentTurns,
                     child: PlayCard(
-                      playerName: setting.opponentName,
+                      playerName: setting.opponentSetting.name,
                       time: play.opponentTime,
                       isActive: !play.isPlayerTurn && play.isPlaying,
                       onTap: () => notifier.tapOpponentTimer(),
@@ -45,7 +45,7 @@ class PlayScreen extends ConsumerWidget {
                       children: [
                         PlayResetButton(
                           onPressed: play.hasStarted
-                              ? () => notifier.reset(setting.seconds)
+                              ? () => notifier.reset(setting)
                               : null,
                         ),
                         StartStopButton(
@@ -66,7 +66,7 @@ class PlayScreen extends ConsumerWidget {
                   TimeAnimatedRotation(
                     turns: setting.rotation.playerTurns,
                     child: PlayCard(
-                      playerName: setting.playerName,
+                      playerName: setting.playerSetting.name,
                       time: play.playerTime,
                       isActive: play.isPlayerTurn && play.isPlaying,
                       onTap: () => notifier.tapPlayerTimer(),

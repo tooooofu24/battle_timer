@@ -9,16 +9,41 @@ class SettingNotifier extends StateNotifier<Setting> {
     state = state.copyWith(rotation: state.rotation.rotate());
   }
 
-  void setTime(int hour, int minute, int second) {
-    state = state.copyWith(hour: hour, minute: minute, second: second);
+  void setPlayerTime(int hour, int minute, int second) {
+    final playerSetting = state.playerSetting.copyWith(
+      hour: hour,
+      minute: minute,
+      second: second,
+    );
+    state = state.copyWith(playerSetting: playerSetting);
+  }
+
+  void setOpponentTime(int hour, int minute, int second) {
+    final opponentSetting = state.opponentSetting.copyWith(
+      hour: hour,
+      minute: minute,
+      second: second,
+    );
+    state = state.copyWith(opponentSetting: opponentSetting);
+  }
+
+  void setBothTime(int hour, int minute, int second) {
+    setPlayerTime(hour, minute, second);
+    setOpponentTime(hour, minute, second);
   }
 
   void setPlayerName(String playerName) {
-    state = state.copyWith(playerName: playerName);
+    final playerSetting = state.playerSetting.copyWith(
+      name: playerName,
+    );
+    state = state.copyWith(playerSetting: playerSetting);
   }
 
-  void setOpponentName(String opponentName) {
-    state = state.copyWith(opponentName: opponentName);
+  void setOpponentName(String playerName) {
+    final opponentSetting = state.opponentSetting.copyWith(
+      name: playerName,
+    );
+    state = state.copyWith(opponentSetting: opponentSetting);
   }
 
   void reset() {

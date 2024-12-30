@@ -1,5 +1,6 @@
 import 'package:battle_timer/features/play/utils/timer_service.dart';
 import 'package:battle_timer/models/play/play.dart';
+import 'package:battle_timer/models/setting/setting.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PlayNotifier extends StateNotifier<Play> {
@@ -66,18 +67,21 @@ class PlayNotifier extends StateNotifier<Play> {
     }
   }
 
-  void reset(int seconds) {
+  void reset(Setting setting) {
     timerService.stop();
     state = Play(
-      playerSeconds: seconds,
-      opponentSeconds: seconds,
+      playerSeconds: setting.playerSetting.seconds,
+      opponentSeconds: setting.opponentSetting.seconds,
     );
   }
 }
 
 final playProvider =
-    StateNotifierProvider.autoDispose.family<PlayNotifier, Play, int>(
-  (ref, seconds) {
-    return PlayNotifier(seconds, seconds);
+    StateNotifierProvider.autoDispose.family<PlayNotifier, Play, Setting>(
+  (ref, setting) {
+    return PlayNotifier(
+      setting.playerSetting.seconds,
+      setting.opponentSetting.seconds,
+    );
   },
 );

@@ -15,7 +15,7 @@ class SettingScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final setting = ref.watch(settingProvider);
     final settingNotifier = ref.read(settingProvider.notifier);
-    final provider = playProvider(setting.seconds);
+    final provider = playProvider(setting);
     final playNotifier = ref.read(provider.notifier);
     return PopScope(
       canPop: false,
@@ -31,10 +31,10 @@ class SettingScreen extends ConsumerWidget {
                     TimeAnimatedRotation(
                       turns: setting.rotation.opponentTurns,
                       child: SettingCard(
-                        setting: setting,
-                        playerName: setting.opponentName,
+                        playerSetting: setting.opponentSetting,
                         setPlayerName: settingNotifier.setOpponentName,
-                        setTime: settingNotifier.setTime,
+                        setTime: settingNotifier.setOpponentTime,
+                        setBothTime: settingNotifier.setBothTime,
                       ),
                     ),
                     SizedBox(
@@ -45,7 +45,7 @@ class SettingScreen extends ConsumerWidget {
                           SettingResetButton(
                             onPressed: () {
                               settingNotifier.reset();
-                              playNotifier.reset(setting.seconds);
+                              playNotifier.reset(setting);
                               Navigator.pop(context);
                             },
                           ),
@@ -56,7 +56,7 @@ class SettingScreen extends ConsumerWidget {
                           TimerIconButton(
                             icon: Icons.done_rounded,
                             onPressed: () {
-                              playNotifier.reset(setting.seconds);
+                              playNotifier.reset(setting);
                               Navigator.pop(context);
                             },
                           ),
@@ -66,10 +66,10 @@ class SettingScreen extends ConsumerWidget {
                     TimeAnimatedRotation(
                       turns: setting.rotation.playerTurns,
                       child: SettingCard(
-                        setting: setting,
-                        playerName: setting.playerName,
+                        playerSetting: setting.playerSetting,
                         setPlayerName: settingNotifier.setPlayerName,
-                        setTime: settingNotifier.setTime,
+                        setTime: settingNotifier.setPlayerTime,
+                        setBothTime: settingNotifier.setBothTime,
                       ),
                     ),
                   ],
