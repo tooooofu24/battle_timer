@@ -167,7 +167,7 @@ class _$SettingImpl extends _Setting {
       this.opponentName = 'プレイヤー2',
       this.rotation = Rotation.up,
       this.hour = 0,
-      this.minute = 10,
+      this.minute = 5,
       this.second = 0})
       : super._();
 

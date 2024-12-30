@@ -12,7 +12,7 @@ class Setting with _$Setting {
     @Default('プレイヤー2') String opponentName, // 相手の名前
     @Default(Rotation.up) Rotation rotation, // 回転
     @Default(0) int hour, // 時
-    @Default(10) int minute, // 分
+    @Default(5) int minute, // 分
     @Default(0) int second, // 秒
   }) = _Setting;
 
