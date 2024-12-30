@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/common/components/timer_icon_button.dart';
 import 'package:battle_timer/features/setting/components/hour_minute_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -59,12 +60,8 @@ class SettingBottomSheet extends HookWidget {
             ),
             SizedBox(
               width: double.infinity,
-              child: IconButton(
-                icon: Icon(
-                  Icons.done_rounded,
-                  color: Colors.blueGrey,
-                  size: 45.0,
-                ),
+              child: TimerIconButton(
+                icon: Icons.done_rounded,
                 onPressed: () {
                   setTime(hour.value, minute.value, second.value);
                   Navigator.pop(context);

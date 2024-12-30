@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/common/components/timer_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class StartStopButton extends StatelessWidget {
@@ -14,20 +15,12 @@ class StartStopButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isPlaying
-        ? IconButton(
-            icon: Icon(
-              Icons.pause_rounded,
-              color: Colors.blueGrey,
-              size: 45.0,
-            ),
+        ? TimerIconButton(
+            icon: Icons.pause_rounded,
             onPressed: onStop,
           )
-        : IconButton(
-            icon: Icon(
-              Icons.play_arrow_rounded,
-              color: Colors.blueGrey,
-              size: 45.0,
-            ),
+        : TimerIconButton(
+            icon: Icons.play_arrow_rounded,
             onPressed: onStart,
           );
   }

@@ -1,4 +1,5 @@
 import 'package:battle_timer/features/common/components/time_display.dart';
+import 'package:battle_timer/features/common/components/timer_card.dart';
 import 'package:battle_timer/features/setting/components/player_name_field.dart';
 import 'package:battle_timer/features/setting/components/setting_bottom_sheet.dart';
 import 'package:battle_timer/models/setting/setting.dart';
@@ -20,44 +21,31 @@ class SettingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Card(
-        color: Colors.white,
-        elevation: 0.3,
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              children: [
-                PlayerNameField(
-                  playerName: playerName,
-                  onChanged: setPlayerName,
+    return TimerCard(
+      children: [
+        PlayerNameField(
+          playerName: playerName,
+          onChanged: setPlayerName,
+        ),
+        Expanded(
+          child: Center(
+            child: TextButton(
+              onPressed: () => showModalBottomSheet(
+                context: context,
+                builder: (context) => SettingBottomSheet(
+                  defaultHour: setting.hour,
+                  defaultMinute: setting.minute,
+                  defaultSecond: setting.second,
+                  setTime: setTime,
                 ),
-                Expanded(
-                  child: Center(
-                    child: TextButton(
-                      onPressed: () => showModalBottomSheet(
-                        context: context,
-                        builder: (context) => SettingBottomSheet(
-                          defaultHour: setting.hour,
-                          defaultMinute: setting.minute,
-                          defaultSecond: setting.second,
-                          setTime: setTime,
-                        ),
-                      ),
-                      child: TimeDisplay(
-                        time: setting.time,
-                        isActive: true,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
+              child: TimeDisplay(
+                time: setting.time,
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

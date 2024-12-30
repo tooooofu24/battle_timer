@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/common/components/timer_icon_button.dart';
 import 'package:battle_timer/features/setting/components/setting_card.dart';
 import 'package:battle_timer/features/setting/components/setting_reset_button.dart';
 import 'package:battle_timer/models/play/play_notifier.dart';
@@ -43,23 +44,16 @@ class SettingScreen extends ConsumerWidget {
                           SettingResetButton(
                             onPressed: () {
                               settingNotifier.reset();
+                              playNotifier.reset(setting.seconds);
                               Navigator.pop(context);
                             },
                           ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.screen_rotation_rounded,
-                              color: Colors.blueGrey,
-                              size: 45.0,
-                            ),
+                          TimerIconButton(
+                            icon: Icons.screen_rotation_rounded,
                             onPressed: () => settingNotifier.rotate(),
                           ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.done_rounded,
-                              color: Colors.blueGrey,
-                              size: 45.0,
-                            ),
+                          TimerIconButton(
+                            icon: Icons.done_rounded,
                             onPressed: () {
                               playNotifier.reset(setting.seconds);
                               Navigator.pop(context);

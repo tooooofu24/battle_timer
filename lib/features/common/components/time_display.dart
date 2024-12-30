@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class TimeDisplay extends StatelessWidget {
   final String time;
-  final bool isActive;
+  final Color textColor;
   const TimeDisplay({
     super.key,
     required this.time,
-    this.isActive = false,
+    this.textColor = Colors.black,
   });
 
   @override
@@ -17,7 +17,7 @@ class TimeDisplay extends StatelessWidget {
         time,
         style: TextStyle(
           fontSize: 100,
-          color: isActive ? Colors.black : Colors.blueGrey,
+          color: textColor,
           fontFamily: 'Roboto_Mono',
         ),
       ),

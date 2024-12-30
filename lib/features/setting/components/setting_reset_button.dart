@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/common/components/timer_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class SettingResetButton extends StatelessWidget {
@@ -9,12 +10,8 @@ class SettingResetButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        Icons.replay_rounded,
-        color: Colors.blueGrey,
-        size: 45.0,
-      ),
+    return TimerIconButton(
+      icon: Icons.replay_rounded,
       onPressed: () async {
         final confirmed = await showDialog<bool>(
           context: context,
@@ -44,22 +41,15 @@ class ResetConfirmDialog extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: IconButton(
-                icon: Icon(
-                  Icons.close_rounded,
-                  color: Colors.blueGrey,
-                  size: 30.0,
-                ),
+              child: TimerIconButton(
+                icon: Icons.close_rounded,
                 onPressed: () => Navigator.pop(context, false),
               ),
             ),
             Expanded(
-              child: IconButton(
-                icon: Icon(
-                  Icons.done_rounded,
-                  color: Colors.blue,
-                  size: 30.0,
-                ),
+              child: TimerIconButton(
+                icon: Icons.done_rounded,
+                color: TimerIconButtonColor.blue,
                 onPressed: () => Navigator.pop(context, true),
               ),
             ),
