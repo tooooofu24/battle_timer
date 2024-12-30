@@ -44,8 +44,9 @@ class PlayScreen extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         PlayResetButton(
-                          disabled: !play.hasStarted,
-                          onPressed: () => notifier.reset(setting.seconds),
+                          onPressed: play.hasStarted
+                              ? () => notifier.reset(setting.seconds)
+                              : null,
                         ),
                         StartStopButton(
                           isPlaying: play.isPlaying,

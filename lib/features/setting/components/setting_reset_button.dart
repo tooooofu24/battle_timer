@@ -11,7 +11,7 @@ class SettingResetButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TimerIconButton(
-      icon: Icons.replay_rounded,
+      icon: Icons.clear_rounded,
       onPressed: () async {
         final confirmed = await showDialog<bool>(
           context: context,

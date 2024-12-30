@@ -2,28 +2,27 @@ import 'package:battle_timer/features/common/components/timer_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class PlayResetButton extends StatelessWidget {
-  final bool disabled;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   const PlayResetButton({
     super.key,
-    required this.disabled,
-    required this.onPressed,
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return TimerIconButton(
-      icon: Icons.stop_rounded,
-      onPressed: () async {
-        if (disabled) return;
-        final confirmed = await showDialog<bool>(
-          context: context,
-          builder: (context) => ResetConfirmDialog(),
-        );
-        if (confirmed == true) {
-          onPressed();
-        }
-      },
+      icon: Icons.replay_rounded,
+      onPressed: onPressed == null
+          ? null
+          : () async {
+              final confirmed = await showDialog<bool>(
+                context: context,
+                builder: (context) => ResetConfirmDialog(),
+              );
+              if (confirmed == true) {
+                onPressed!();
+              }
+            },
     );
   }
 }
