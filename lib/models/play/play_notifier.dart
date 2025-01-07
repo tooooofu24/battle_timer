@@ -1,7 +1,10 @@
+import 'package:battle_timer/features/play/components/play_finish_dialog.dart';
 import 'package:battle_timer/features/play/utils/sound_service.dart';
 import 'package:battle_timer/features/play/utils/timer_service.dart';
 import 'package:battle_timer/models/play/play.dart';
 import 'package:battle_timer/models/setting/setting.dart';
+import 'package:battle_timer/models/setting/setting_notifier.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PlayNotifier extends StateNotifier<Play> {
@@ -16,7 +19,12 @@ class PlayNotifier extends StateNotifier<Play> {
   final timerService = TimerService();
   final soundService = SoundService();
 
-  void tapTimer(int increment, bool tapPlayerTimer) {
+  void tapTimer({
+    required int increment,
+    required bool tapPlayerTimer,
+    required BuildContext context,
+    required WidgetRef ref,
+  }) {
     final tapOpponentTimer = !tapPlayerTimer;
     final isPlayerTurn = state.isPlayerTurn;
     final isOpponentTurn = !isPlayerTurn;
@@ -69,6 +77,14 @@ class PlayNotifier extends StateNotifier<Play> {
         if (remaining == 0) {
           soundService.stop();
           stop();
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (_) => PlayFinishDialog(),
+          ).then((_) {
+            final setting = ref.watch(settingProvider);
+            reset(setting);
+          });
         }
       },
     );
@@ -79,8 +95,16 @@ class PlayNotifier extends StateNotifier<Play> {
     state = state.copyWith(isPlaying: false);
   }
 
-  void start() {
-    tapTimer(0, !state.isPlayerTurn);
+  void start({
+    required BuildContext context,
+    required WidgetRef ref,
+  }) {
+    tapTimer(
+      increment: 0,
+      tapPlayerTimer: !state.isPlayerTurn,
+      context: context,
+      ref: ref,
+    );
   }
 
   void reset(Setting setting) {

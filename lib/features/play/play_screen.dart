@@ -38,10 +38,13 @@ class PlayScreen extends ConsumerWidget {
                       isActive: !play.isPlayerTurn && play.isPlaying,
                       isPlaying: play.isPlaying,
                       onTap: () => notifier.tapTimer(
-                          play.isPlaying && play.opponentSeconds > 0
-                              ? setting.opponentSetting.increment
-                              : 0,
-                          false),
+                        increment: play.isPlaying && play.opponentSeconds > 0
+                            ? setting.opponentSetting.increment
+                            : 0,
+                        tapPlayerTimer: false,
+                        context: context,
+                        ref: ref,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -56,7 +59,10 @@ class PlayScreen extends ConsumerWidget {
                         ),
                         StartStopButton(
                           isPlaying: play.isPlaying,
-                          onStart: () => notifier.start(),
+                          onStart: () => notifier.start(
+                            context: context,
+                            ref: ref,
+                          ),
                           onStop: () => notifier.stop(),
                         ),
                         PlaySettingButton(
@@ -78,10 +84,12 @@ class PlayScreen extends ConsumerWidget {
                       isActive: play.isPlayerTurn && play.isPlaying,
                       isPlaying: play.isPlaying,
                       onTap: () => notifier.tapTimer(
-                        play.isPlaying && play.playerSeconds > 0
+                        increment: play.isPlaying && play.playerSeconds > 0
                             ? setting.playerSetting.increment
                             : 0,
-                        true,
+                        tapPlayerTimer: true,
+                        context: context,
+                        ref: ref,
                       ),
                     ),
                   ),
