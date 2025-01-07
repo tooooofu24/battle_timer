@@ -37,11 +37,11 @@ class PlayScreen extends ConsumerWidget {
                       increment: setting.opponentSetting.increment,
                       isActive: !play.isPlayerTurn && play.isPlaying,
                       isPlaying: play.isPlaying,
-                      onTap: () => notifier.tapOpponentTimer(
-                        play.isPlaying && play.opponentSeconds > 0
-                            ? setting.opponentSetting.increment
-                            : 0,
-                      ),
+                      onTap: () => notifier.tapTimer(
+                          play.isPlaying && play.opponentSeconds > 0
+                              ? setting.opponentSetting.increment
+                              : 0,
+                          false),
                     ),
                   ),
                   SizedBox(
@@ -74,13 +74,14 @@ class PlayScreen extends ConsumerWidget {
                     child: PlayCard(
                       playerName: setting.playerSetting.name,
                       time: play.playerTime,
-                      increment: setting.opponentSetting.increment,
+                      increment: setting.playerSetting.increment,
                       isActive: play.isPlayerTurn && play.isPlaying,
                       isPlaying: play.isPlaying,
-                      onTap: () => notifier.tapPlayerTimer(
+                      onTap: () => notifier.tapTimer(
                         play.isPlaying && play.playerSeconds > 0
                             ? setting.playerSetting.increment
                             : 0,
+                        true,
                       ),
                     ),
                   ),

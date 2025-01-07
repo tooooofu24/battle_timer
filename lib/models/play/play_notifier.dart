@@ -1,3 +1,4 @@
+import 'package:battle_timer/features/play/utils/sound_service.dart';
 import 'package:battle_timer/features/play/utils/timer_service.dart';
 import 'package:battle_timer/models/play/play.dart';
 import 'package:battle_timer/models/setting/setting.dart';
@@ -13,45 +14,63 @@ class PlayNotifier extends StateNotifier<Play> {
         ));
 
   final timerService = TimerService();
+  final soundService = SoundService();
 
-  void tapPlayerTimer(int increment) {
-    // プレイ中 && 相手のターンの場合は何もしない
-    if (state.isPlaying && !state.isPlayerTurn) {
+  void tapTimer(int increment, bool tapPlayerTimer) {
+    final tapOpponentTimer = !tapPlayerTimer;
+    final isPlayerTurn = state.isPlayerTurn;
+    final isOpponentTurn = !isPlayerTurn;
+    // プレイ中 && 相手ターンに自分のタイマーをタップした場合は何もしない
+    if (state.isPlaying && tapPlayerTimer == isOpponentTurn) {
       return;
     }
-    // タイマーを止める
-    timerService.stop();
-    // Playの状態を更新
-    state = state.copyWith(
-        isPlaying: true,
-        hasStarted: true,
-        isPlayerTurn: false,
-        playerSeconds: state.playerSeconds + increment);
-    // 1秒ごとにopponentSecondsを1減らす
-    timerService.start(
-      state.opponentSeconds,
-      (remaining) => state = state.copyWith(opponentSeconds: remaining),
-    );
-  }
-
-  void tapOpponentTimer(int increment) {
-    // プレイ中 && プレイヤーのターンの場合は何もしない
-    if (state.isPlaying && state.isPlayerTurn) {
+    // プレイ中 && 自分ターンに相手のタイマーをタップした場合は何もしない
+    if (state.isPlaying && tapOpponentTimer == isPlayerTurn) {
       return;
     }
-    // タイマーを止める
+    // タイマーとサウンドを停止
     timerService.stop();
+    soundService.stop();
+
+    // 秒数を追加
+    var playerSeconds = state.playerSeconds;
+    var opponentSeconds = state.opponentSeconds;
+    if (tapPlayerTimer) {
+      playerSeconds += increment;
+    } else {
+      opponentSeconds += increment;
+    }
+
     // Playの状態を更新
     state = state.copyWith(
       isPlaying: true,
       hasStarted: true,
-      isPlayerTurn: true,
-      opponentSeconds: state.opponentSeconds + increment,
+      isPlayerTurn: !isPlayerTurn,
+      playerSeconds: playerSeconds,
+      opponentSeconds: opponentSeconds,
     );
-    // 1秒ごとにplayerSecondsを1減らす
+
     timerService.start(
-      state.playerSeconds,
-      (remaining) => state = state.copyWith(playerSeconds: remaining),
+      isPlayerTurn ? state.opponentSeconds : state.playerSeconds,
+      (remaining) {
+        if (isPlayerTurn) {
+          state = state.copyWith(opponentSeconds: remaining);
+        } else {
+          state = state.copyWith(playerSeconds: remaining);
+        }
+        if (remaining == 10) {
+          soundService.stop();
+          soundService.play();
+        }
+        if (remaining == 5) {
+          soundService.stop();
+          soundService.play(loop: true);
+        }
+        if (remaining == 0) {
+          soundService.stop();
+          stop();
+        }
+      },
     );
   }
 
@@ -61,11 +80,7 @@ class PlayNotifier extends StateNotifier<Play> {
   }
 
   void start() {
-    if (state.isPlayerTurn) {
-      tapOpponentTimer(0);
-    } else {
-      tapPlayerTimer(0);
-    }
+    tapTimer(0, !state.isPlayerTurn);
   }
 
   void reset(Setting setting) {
