@@ -1,4 +1,4 @@
-package com.example.battle_timer
+package jp.toycatch.battle_timer
 
 import io.flutter.embedding.android.FlutterActivity
 
