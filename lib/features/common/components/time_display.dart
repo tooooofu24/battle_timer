@@ -26,7 +26,7 @@ class TimeDisplay extends StatelessWidget {
               return WidgetSpan(
                 alignment: PlaceholderAlignment.middle,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0, left: 4.0),
+                  padding: const EdgeInsets.only(bottom: 20.0, left: 5.0),
                   child: Text(
                     char,
                     style: defaultStyle,
